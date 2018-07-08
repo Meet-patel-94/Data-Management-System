@@ -1,0 +1,92 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="libraryData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Author" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:integer" name="AuthorId"/>
+              <xs:element type="xs:string" name="AuthorName"/>
+              <xs:element type="xs:string" name="Website"/>
+              <xs:element type="xs:int" name="PhoneNo"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="sql_sequnce">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:byte" name="seq"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CustomerBook" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:integer" name="CustomerId"/>
+              <xs:element type="xs:integer" name="BookId"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BookAuthor" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:integer" name="AuthorId"/>
+              <xs:element type="xs:integer" name="BookId"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Customer" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:integer" name="CustomerId"/>
+              <xs:element type="xs:string" name="CustomerName"/>
+              <xs:element type="xs:string" name="Address"/>
+              <xs:element type="xs:integer" name="PhoneNo"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Warehouse" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:integer" name="WarehouseId"/>
+              <xs:element type="xs:string" name="Location"/>
+              <xs:element type="xs:integer" name="PhoneNo"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="FedEx" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:integer" name="FedExId"/>
+              <xs:element type="xs:string" name="Location"/>
+              <xs:element type="xs:integer" name="PhoneNo"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Publisher" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:integer" name="PublisherId"/>
+              <xs:element type="xs:string" name="Website"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BOOK" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:integer" name="BookId"/>
+              <xs:element type="xs:string" name="BookName"/>
+              <xs:element type="xs:integer" name="Price"/>
+              <xs:element type="xs:integer" name="ISBN"/>
+              <xs:element type="xs:string" name="Language"/>
+              <xs:element type="xs:int" name="PublicationDate"/>
+              <xs:element type="xs:int" name="AmazonRating"/>
+              <xs:element type="xs:string" name="Genre"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

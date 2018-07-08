@@ -1,0 +1,149 @@
+PRAGMA foreign_keys=ON;
+BEGIN TRANSACTION;
+CREATE TABLE BOOK(
+BookId INTEGER PRIMARY KEY AUTOINCREMENT,
+BookName VARCHAR(50) NOT NULL,
+Price INT NOT NULL,
+ISBN INT,
+
+Language VARCHAR(50),
+PublicationDate VARCHAR(50),
+AmazonRating INT,
+Genre Char(10),
+CONSTRAINT fk_dir FOREIGN KEY (BookId) REFERENCES BOOK (WarehouseId),
+CONSTRAINT fk_dir FOREIGN KEY (BookId) REFERENCES Publisher (PublisherId),
+CONSTRAINT fk_dir FOREIGN KEY (BookId) REFERENCES FedEx (FedExId)
+);
+INSERT INTO "BOOK" VALUES(1,'Harry Potter and the Cursed Child',30,1338099132,' English','2016-07-31',4,'Fiction');
+INSERT INTO "BOOK" VALUES(2,'The Guide: A Novel',22,143039644,' English','2006-08-06',4.5,'Fiction');
+INSERT INTO "BOOK" VALUES(3,'The High Mountains of Portugal: A Novel ',34.8,345809432,'English','2016-02-02',4,'Fiction');
+INSERT INTO "BOOK" VALUES(4,'The Unconquered',28,'030746296X','ENGLISH','2011-11-18',3.5,'NonFiction');
+INSERT INTO "BOOK" VALUES(5,'Adrift: Seventy-six Days Lost at Sea',22,618257322,'ENGLISH','2010-09-19',4.7,'NonFiction');
+INSERT INTO "BOOK" VALUES(6,'Long Walk: The True Story Of A Trek To Freedom ',40,1592289444,'ENGLISH','2006-04-01',4.3,'NonFiction');
+INSERT INTO "BOOK" VALUES(7,'HomeAlone',20,4534746036,' English','2011-08-06',3.3,'Fiction'); 
+INSERT INTO "BOOK" VALUES(8,'Miss Peregrine''s Home for Peculiar Children',55,1594746036,' English','2013-06-06',3.3,'Fiction');
+INSERT INTO "BOOK" VALUES(9,'Asylum ',40,62220977,' English','2014-11-06',3.3,'Fiction'); 
+INSERT INTO "BOOK" VALUES(10,'Gandhi: An Autobiography, The Story of My Experiments with Truth',12,1554551838,' English','2009-03-03',3.9,'Fiction');
+INSERT INTO "BOOK" VALUES(11,'The 120 Days of Simon',4.95,'978-1-60309-050-6','ENGLISH','2012-03-03',4.3,'Fiction');
+INSERT INTO "BOOK" VALUES(12,'Alec: The Years Have Pants',14.95,'978-1-60309-025-4','ENGLISH','2012-05-07',4.7,'NonFiction');
+INSERT INTO "BOOK" VALUES(13,'The Bojeffries Saga',56,'978-1-60334-025-4','ENGLISH','2014-06-013',4.7,'Fiction');
+INSERT INTO "BOOK" VALUES(14,'The World As I See It ',32.5,806527900,'ENGLISH','2009-08-09',4.2,'NonFiction');
+INSERT INTO "BOOK" VALUES(16,'The 7 Habits of Highly Effective People',23,1451639619,'ENGLISH','2013-11-19',4.7,'NonFiction');
+
+INSERT INTO "BOOK" VALUES(20,'PowerOfHabits',9,217838833,'English','1999-01-23',4.9,'NonFiction');
+
+CREATE TABLE Author(
+AuthorId INTEGER PRIMARY KEY AUTOINCREMENT, AuthorName VARCHAR(50) NOT NULL, Website VARCHAR(50) NOT NULL,
+PhoneNo INT
+);
+INSERT INTO "Author" VALUES(1,'ramesh','www.ramesbooks.com',6476486980);
+INSERT INTO "Author" VALUES(2,'james','www.jamesstories.com',4476456980);
+INSERT INTO "Author" VALUES(3,'mathew','www.mathewstories.com',947645698);
+INSERT INTO "Author" VALUES(4,'alex','www.alextories.com',847645698);
+INSERT INTO "Author" VALUES(5,'priya','www.priyafables.com',623345898);
+INSERT INTO "Author" VALUES(6,'omar','www.omarfables.com',619345895);
+INSERT INTO "Author" VALUES(7,'jonathan','www.jonathanfables.com',619845895);
+INSERT INTO "Author" VALUES(8,'lisa','www.lisashortstories.com',646845295);
+INSERT INTO "Author" VALUES(9,'lavanya','www.lovestories.com',646945293);
+INSERT INTO "Author" VALUES(10,'geet','www.geetstories.com',846943293);
+CREATE TABLE CustomerBook(
+CustomerId INT NOT NULL,
+BookId INT NOT NULL,
+CONSTRAINT PK_CustomerBook PRIMARY KEY (
+CustomerId,
+BookId
+),
+FOREIGN KEY ( CustomerId) REFERENCES Cutomer(CustomerId), FOREIGN KEY (BookId) REFERENCES BOOK (BookId)
+
+);
+INSERT INTO "CustomerBook" VALUES(1,12);
+INSERT INTO "CustomerBook" VALUES(2,13);
+INSERT INTO "CustomerBook" VALUES(3,15);
+INSERT INTO "CustomerBook" VALUES(4,19);
+INSERT INTO "CustomerBook" VALUES(5,20);
+INSERT INTO "CustomerBook" VALUES(6,11);
+INSERT INTO "CustomerBook" VALUES(7,16);
+INSERT INTO "CustomerBook" VALUES(8,17);
+INSERT INTO "CustomerBook" VALUES(9,7);
+INSERT INTO "CustomerBook" VALUES(10,2);
+INSERT INTO "CustomerBook" VALUES(1,19);
+INSERT INTO "CustomerBook" VALUES(3,17);
+INSERT INTO "CustomerBook" VALUES(5,14);
+INSERT INTO "CustomerBook" VALUES(7,10);
+INSERT INTO "CustomerBook" VALUES(9,2);
+INSERT INTO "CustomerBook" VALUES(10,5);
+CREATE TABLE BookAuthor(
+AuthorId INT NOT NULL,
+BookId INT NOT NULL,
+
+
+CONSTRAINT PK_BookAuhtor PRIMARY KEY (
+AuthorId,
+BookId
+),
+FOREIGN KEY ( AuthorId) REFERENCES Author(AuthorId), FOREIGN KEY (BookId) REFERENCES BOOK (BookId)
+
+);
+INSERT INTO "BookAuthor" VALUES(3,9);
+INSERT INTO "BookAuthor" VALUES(2,19);
+INSERT INTO "BookAuthor" VALUES(1,10);
+INSERT INTO "BookAuthor" VALUES(4,13);
+INSERT INTO "BookAuthor" VALUES(5,17);
+INSERT INTO "BookAuthor" VALUES(8,20);
+INSERT INTO "BookAuthor" VALUES(6,13);
+INSERT INTO "BookAuthor" VALUES(7,14);
+INSERT INTO "BookAuthor" VALUES(9,7);
+INSERT INTO "BookAuthor" VALUES(10,15);
+INSERT INTO "BookAuthor" VALUES(3,12);
+INSERT INTO "BookAuthor" VALUES(5,10);
+INSERT INTO "BookAuthor" VALUES(7,9);
+INSERT INTO "BookAuthor" VALUES(9,13);
+CREATE TABLE "Customer" ("CustomerId" INTEGER PRIMARY KEY ,"CustomerName" VARCHAR(50) NOT NULL ,"Address" VARCHAR(50) NOT NULL DEFAULT (null) ,"PhoneNo" INT);
+INSERT INTO "Customer" VALUES(1,'james','6649 N Blue Gum St,London','504-621-8927'); 
+INSERT INTO "Customer" VALUES(2,'Art','8 W Cerritos Ave #54,Paris','907-385-4412'); 
+INSERT INTO "Customer" VALUES(3,'Donette','3 Mcauley Dr,NewYork','419-503-2484'); 
+INSERT INTO "Customer" VALUES(4,'Mitsue','7 Eads St,LosAngeles','773-573-6914'); 
+INSERT INTO "Customer" VALUES(5,'Leota','7 W Jackson Blvd,NewJersey','408-752-3500'); 
+INSERT INTO "Customer" VALUES(7,'Kris','228 Runamuck Pl #2808,Toronto','410-655-8723'); 
+INSERT INTO "Customer" VALUES(8,'Minna','2371 Jerrold Ave,London','215-874-1229'); 
+INSERT INTO "Customer" VALUES(9,'Abel','37275 St Rt 17m M,Paris','631-677-3675'); 
+INSERT INTO "Customer" VALUES(10,'Kiley','25 E 75th St #69,NewYork','431-677-3695'); CREATE TABLE "Warehouse" ("WarehouseId" INTEGER PRIMARY KEY ,"Location" VARCHAR(50) DEFAULT (null) ,"PhoneNo" INT);
+
+INSERT INTO "Warehouse" VALUES(1,'Los Angeles','310-498-5651'); 
+INSERT INTO "Warehouse" VALUES(2,'NewYork','440-780-8425'); 
+INSERT INTO "Warehouse" VALUES(3,'Toronto','956-537-6195'); 
+INSERT INTO "Warehouse" VALUES(4,'Newjersey','456-537-6195'); 
+INSERT INTO "Warehouse" VALUES(5,'London','366-537-6125'); 
+INSERT INTO "Warehouse" VALUES(6,'Paris','856-537-6125'); 
+INSERT INTO "Warehouse" VALUES(7,'London','602-277-4385'); 
+INSERT INTO "Warehouse" VALUES(8,'NewYork','802-477-5385'); 
+INSERT INTO "Warehouse" VALUES(9,'NewYork','202-477-5387'); 
+INSERT INTO "Warehouse" VALUES(10,'LosAngeles','802-477-5383');
+
+CREATE TABLE "FedEx" ("FedExId" INTEGER PRIMARY KEY ,"Location" VARCHAR(50) DEFAULT (null) ,"PhoneNo" INT);
+INSERT INTO "FedEx" VALUES(1,'Toronto','410-655-8723'); 
+INSERT INTO "FedEx" VALUES(2,'Paris','810-455-923'); 
+INSERT INTO "FedEx" VALUES(3,'NewYork','789-345-324'); 
+INSERT INTO "FedEx" VALUES(4,'LosAngeles','215-874-1229'); 
+INSERT INTO "FedEx" VALUES(5,'NewJersey','515-874-1229'); 
+INSERT INTO "FedEx" VALUES(6,'London','615-474-1232'); 
+INSERT INTO "FedEx" VALUES(7,'NewYork','515-474-1298'); 
+INSERT INTO "FedEx" VALUES(8,'Toronto','815-344-1226'); 
+INSERT INTO "FedEx" VALUES(9,'LosAngeles','310-498-5651'); 
+INSERT INTO "FedEx" VALUES(10,'NewJersey','931-313-9635');
+
+CREATE TABLE "Publisher" ("PublisherId" INTEGER PRIMARY KEY ,"Website" VARCHAR(50)); 
+INSERT INTO "Publisher" VALUES(1,'www.createbooks.com');
+INSERT INTO "Publisher" VALUES(2,'www.harpercollins.com'); 
+INSERT INTO "Publisher" VALUES(3,'www.tlac.com'); 
+INSERT INTO "Publisher" VALUES(4,'www.mandagroup.com'); 
+INSERT INTO "Publisher" VALUES(5,'www.dundrunpress.com'); 
+INSERT INTO "Publisher" VALUES(6,'www.betweenthelines.com'); 
+INSERT INTO "Publisher" VALUES(7,'www.wemakebooks.com'); 
+INSERT INTO "Publisher" VALUES(8,'www.secondstorypress.com'); 
+INSERT INTO "Publisher" VALUES(9,'www.coachhousebooks.com'); 
+INSERT INTO "Publisher" VALUES(10,'www.nationalbooknetwork.com'); DELETE FROM sqlite_sequence;
+
+INSERT INTO "sqlite_sequence" VALUES('Author',10);
+INSERT INTO "sqlite_sequence" VALUES('BOOK',18);
+COMMIT;
